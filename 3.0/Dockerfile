@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		libpq5 \
 		libsqlite3-0 \
 	&& rm -rf /var/lib/apt/lists/*
-	
+
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
 	&& curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
@@ -29,7 +29,7 @@ RUN set -x \
 ENV RAILS_ENV production
 WORKDIR /usr/src/redmine
 
-ENV REDMINE_VERSION 3.0.7
+ENV REDMINE_VERSION 3.0.1
 ENV REDMINE_DOWNLOAD_MD5 bf63ceef4fde0d38d17d94969478d422
 
 RUN curl -fSL "http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz" -o redmine.tar.gz \

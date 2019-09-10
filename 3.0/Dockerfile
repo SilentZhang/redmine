@@ -4,6 +4,14 @@ FROM ruby:2.2-slim
 RUN groupadd -r redmine && useradd -r -g redmine redmine
 
 # grab gosu for easy step-down from root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		curl \
+		imagemagick \
+		libmysqlclient18 \
+		libpq5 \
+		libsqlite3-0 \
+	&& rm -rf /var/lib/apt/lists/*
+	
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
 	&& curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
@@ -16,12 +24,7 @@ RUN set -x \
 	&& chmod +x /usr/local/bin/tini \
 	&& tini -h
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		imagemagick \
-		libmysqlclient18 \
-		libpq5 \
-		libsqlite3-0 \
-	&& rm -rf /var/lib/apt/lists/*
+
 
 ENV RAILS_ENV production
 WORKDIR /usr/src/redmine

@@ -77,7 +77,7 @@ RUN set -eux; \
 	chown redmine:redmine "$HOME"; \
 	chmod 1777 "$HOME"
 
-ENV REDMINE_VERSION 3.0.7
+ENV REDMINE_VERSION 3.0.1
 ENV REDMINE_DOWNLOAD_MD5 bf63ceef4fde0d38d17d94969478d422
 
 RUN set -eux; \

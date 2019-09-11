@@ -15,9 +15,9 @@ before_script:
 
 script:
   - docker build -t "$image" .
-  - ~/official-images/test/run.sh "$image"
+#  - ~/official-images/test/run.sh "$image"
   - docker build -t "$image-passenger" passenger
-  - ~/official-images/test/run.sh "$image-passenger"
+#  - ~/official-images/test/run.sh "$image-passenger"
 
 after_script:
   - docker images
